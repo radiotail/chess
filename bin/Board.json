@@ -1,0 +1,1 @@
+{"type":"View","props":{"width":720,"height":830},"compId":1,"child":[{"type":"Image","props":{"y":0.5,"x":0,"var":"board","skin":"res/board.png"},"compId":2}],"loadList":["res/board.png"],"loadList3D":[]}

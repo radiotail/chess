@@ -1,0 +1,8 @@
+<page>
+   <item name="Match.ui" props="" ifExport="分离模式" aName=""/>
+   <item name="Login.ui" props="" ifExport="分离模式" aName=""/>
+   <item name="Board.ui" props="" ifExport="分离模式" aName=""/>
+   <item name="Board.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="Login.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="Match.scene" props="" ifExport="分离模式" aName=""/>
+</page>

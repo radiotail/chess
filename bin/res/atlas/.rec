@@ -1,0 +1,45 @@
+D .
+D res
+P 7A7A0088 ba.png
+P 6B1C84F0 bb.png
+P A76474A1 bc.png
+R B092EC7F bg.png
+P F87CAA57 bg_order_pop.png
+P B416269A bk.png
+P F5EFA1D7 bkm.png
+P 90C6A3DD bn.png
+R C552A8FE board.png
+P CACA358C bp.png
+P 29AAA89F br.png
+P 341AAD5C check.png
+P 47C362BF defeat.png
+P 182694FB draw.png
+P 16C611DB drawBtn.png
+P 803A8DD4 hint.png
+P AD6DF89D history.png
+P C963765F level.png
+P 5597EF92 lose.png
+R 9BA42769 mainTitle.png
+P E9BFFF7B menu.png
+P 57E3B797 messBtn.png
+P 88C77099 oo.png
+P 7938B664 oos.png
+P E5F9419C pveBtn.png
+P 45C5B5FA pvpBtn.png
+P 0F50C61D quitBtn.png
+P AF1341EC ra.png
+P 16ED1B44 rb.png
+P F25C1A08 rc.png
+P 4777B1DB restart.png
+P F700A70C rk.png
+P 37DD5046 rkm.png
+P C9DC2D87 rn.png
+P 798B3729 rp.png
+P 6528085F rr.png
+P 1944D2BB title.png
+P 0166D3EE title_bg.png
+P D06C50E3 undo.png
+P CBEBD22B win.png
+D res/records
+R 1DBF8798 $.rec
+R 1C7D311F records$.rec

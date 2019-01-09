@@ -1,0 +1,12 @@
+<res>
+   <item name="res/button1.gif" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/button2.gif" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/background.jpg" type="Image" compress="0" pack="0" quality="80" props="" picType="0"/>
+   <item name="res/board.jpg" type="Image" compress="0" pack="0" quality="80" props="" picType="0"/>
+   <item name="res/home_button01.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/home_button04.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/level_bg.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/bggaoguang.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/level.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+   <item name="res/win.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0"/>
+</res>
