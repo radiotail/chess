@@ -358,16 +358,16 @@ export class Board  extends ui.BoardUI {
     }
 
     tooLong(): boolean {
-        if (this.situation.getMoveCount() <= 100) {
-            return false;
-        }
+        // if (this.situation.getMoveCount() <= 100) {
+        //     return false;
+        // }
 
-        for (let i = 2; i <= 100; i ++) {
-            if (!this.situation.captured(i)) {
-                this.showResult(RESULT.DRAW, "超过自然限着作和，辛苦了！");
-                return true;
-            }
-        }
+        // for (let i = 2; i <= 100; i ++) {
+        //     if (!this.situation.captured(i)) {
+        //         this.showResult(RESULT.DRAW, "超过自然限着作和，辛苦了！");
+        //         return true;
+        //     }
+        // }
 
         return false;
     }
