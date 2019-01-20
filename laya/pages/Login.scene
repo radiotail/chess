@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":29,
+    "selecteID":32,
     "searchKey":"View,login",
     "props":{"width":720,"top":0,"sceneColor":"#000000","right":0,"name":"login","left":0,"height":1280,"fontSize":8,"bottom":0},
     "nodeParent":-1,
-    "maxID":32,
+    "maxID":34,
     "label":"login",
     "isOpen":true,
     "isDirectory":true,
@@ -44,34 +44,6 @@
         },
         {
             "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":220,"x":75,"skin":"res/mainTitle.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":29,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":110,"x":43,"width":146,"skin":"res/check.png","height":132},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":30,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Button",
             "searchKey":"Button,messBtn",
             "props":{"y":959,"x":360,"var":"messBtn","stateNum":"1","skin":"res/messBtn.png","anchorY":0.5,"anchorX":0.5},
@@ -83,6 +55,48 @@
             "compId":31,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"Panel",
+            "searchKey":"Panel,logo,logo",
+            "props":{"y":180,"x":360,"width":719,"var":"logo","name":"logo","height":361,"anchorY":0.5,"anchorX":0.5},
+            "nodeParent":1,
+            "label":"logo",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":32,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":220,"x":74,"skin":"res/mainTitle.png"},
+                    "nodeParent":32,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":29,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":110,"x":43,"width":146,"skin":"res/check.png","height":132},
+                    "nodeParent":32,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":30,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {

@@ -32,6 +32,10 @@ function SQ_Y(sq) {
 	return (COLUMN_Y(sq) - 3) * SQUARE_SIZE + TOP_GAP;
 }
 
+function alert(message: string) {
+    console.log(message);
+}
+
 function alertDelay(message) {
     Laya.timer.once(250, this, alert, [message]); 
 }
@@ -148,7 +152,7 @@ export class Board  extends ui.BoardUI {
         this.setSearch(search);
     }
 
-    genLevelMsec(level: number) {
+    genLevelMsec(level: number): number {
         return Math.pow(2, level);
     }
 

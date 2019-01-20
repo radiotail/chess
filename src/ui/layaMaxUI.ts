@@ -15,6 +15,7 @@ export module ui {
 		public pveBtn:Laya.Button;
 		public pvpBtn:Laya.Button;
 		public messBtn:Laya.Button;
+		public logo:Laya.Panel;
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

@@ -32,9 +32,11 @@ export class Sound {
             {url: "res/sounds/bg.ogg", type: "sound"}],
             Laya.Handler.create(this, this.onLoaded)
         );
+        // Laya.Sound.load("res/sounds/click.ogg");
     }
 
     onLoaded() {
+        console.log("sounds loaded!")
         this.canPlayMusic = true;
         this.canPlayEffetc = true;
 

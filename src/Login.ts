@@ -16,6 +16,8 @@ export class Login extends ui.LoginUI {
         super();
 
         this.game = game;
+        this.logo.centerX = 0;
+
         this.pveBtn.centerX = 0;
         this.pveBtn.on(laya.events.Event.CLICK, this, this.onPveBtnClick);
         Game.addButtonEvent(this.pveBtn);

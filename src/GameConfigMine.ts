@@ -1,9 +1,9 @@
 export default class GameConfig{
     static width:number=720;
     static height:number=1280;
-    static scaleMode:string="fixedauto";
+    static scaleMode:string=Laya.Stage.SCALE_FIXED_AUTO;;
     static screenMode:string="vertical";
-    static alignV:string="top";
+    static alignV:string="middle";
     static alignH:string="center";
     static startScene:any="";
     static sceneRoot:string="";

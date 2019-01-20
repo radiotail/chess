@@ -1168,7 +1168,7 @@ var MiniSound=(function(_super){
 	__proto.load=function(url){
 		if (!MiniFileMgr.isLocalNativeFile(url)){
 			url=URL.formatURL(url);
-			}else{
+		}else{
 			if (url.indexOf("http://")!=-1 || url.indexOf("https://")!=-1){
 				if(MiniFileMgr.loadPath !=""){
 					url=url.split(MiniFileMgr.loadPath)[1];
@@ -1191,7 +1191,7 @@ var MiniSound=(function(_super){
 			if(!MiniAdpter.autoCacheFile){
 				this.onDownLoadCallBack(url,0);
 				}else{
-				if (MiniFileMgr.isLocalNativeFile(url)){
+				// if (MiniFileMgr.isLocalNativeFile(url)){
 					tempStr=URL.rootPath !="" ? URL.rootPath :URL.basePath;
 					var tempUrl=url;
 					if(tempStr !="")
@@ -1216,9 +1216,9 @@ var MiniSound=(function(_super){
 						}
 					}
 					this.onDownLoadCallBack(url,0);
-					}else{
-					MiniFileMgr.downOtherFiles(url,Handler.create(this,this.onDownLoadCallBack,[url]),url);
-				}
+					// }else{
+					// MiniFileMgr.downOtherFiles(url,Handler.create(this,this.onDownLoadCallBack,[url]),url);
+				// }
 			}
 		}
 	}

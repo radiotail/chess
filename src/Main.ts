@@ -3,7 +3,6 @@ import {Game} from "./Game"
 import {Situation} from "./Situation"
 import {Search, HASH_LEVEL} from "./Search"
 import {User} from "./User"
-// require('res/game.js')
 
 class Main {
 	constructor() {
@@ -28,23 +27,23 @@ class Main {
 	}
 
 	onVersionLoaded(): void {
+		if (window['wx'] != undefined) {
+			const loadTask = window['wx'].loadSubpackage({
+				name: 'subpackage', // name 可以填 name 或者 root
+				success: function(res) {
+					// 分包加载成功后通过 success 回调
+					console.log("success");
+				},
+
+				fail: function(res) {
+					// 分包加载失败通过 fail 回调
+					console.log("fail");
+				}
+			});
+		}
+
 		//激活大小图映射，加载小图的时候，如果发现小图在大图合集里面，则优先加载大图合集，而不是小图
 		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
-		// const loadTask = window['wx'].loadSubpackage({
-		// 	name: 'subpackage', // name 可以填 name 或者 root
-		// 	success: function(res) {
-		// 		//激活大小图映射，加载小图的时候，如果发现小图在大图合集里面，则优先加载大图合集，而不是小图
-		// 		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
-
-		// 		// 分包加载成功后通过 success 回调
-		// 		console.log("success");
-		// 	},
-
-		// 	fail: function(res) {
-		// 		// 分包加载失败通过 fail 回调
-		// 		console.log("fail");
-		// 	}
-		// });
 	}
 
 	onConfigLoaded(): void {

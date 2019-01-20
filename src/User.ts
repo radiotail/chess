@@ -8,46 +8,41 @@ export class User {
 
     constructor() {
         //laya.net.LocalStorage.clear();
-        this.unlockMess = laya.net.LocalStorage.getJSON("unlockMess");
-        this.pveLevelIndex = laya.net.LocalStorage.getJSON("pveLevelIndex");
-        this.pveHistory = laya.net.LocalStorage.getJSON("pveHistory");
-        this.messIndex = laya.net.LocalStorage.getJSON("messIndex");
+        let unlockMess = laya.net.LocalStorage.getItem("unlockMess");
+        let pveLevelIndex = laya.net.LocalStorage.getItem("pveLevelIndex");
+        let messIndex = laya.net.LocalStorage.getItem("messIndex");
 
-        if (this.pveHistory == null) {
+        let pveHistory = laya.net.LocalStorage.getItem("pveHistory");
+
+        if (pveHistory == "") {
             this.pveHistory = new Array<number[]>(16);
             for (let i = 0; i < 16; i++) {
                 this.pveHistory[i] = [0, 0, 0];
             }
+        } else {
+            this.pveHistory = JSON.parse(pveHistory);
         }
 
-        if (this.pveLevelIndex == null) {
-            this.pveLevelIndex = 0
-        }
-
-        if (this.unlockMess == null) {
-            this.unlockMess = 0
-        }
-
-        if (this.messIndex == null) {
-            this.messIndex = 0
-        }
+        this.pveLevelIndex = Number(pveLevelIndex);
+        this.unlockMess = Number(unlockMess);
+        this.messIndex = Number(messIndex);
     }
 
     setUnlockMess(unlockMess: number) {
         this.unlockMess = unlockMess;
-        laya.net.LocalStorage.setJSON("unlockMess", this.unlockMess);
+        laya.net.LocalStorage.setItem("unlockMess", String(this.unlockMess));
     }
 
-    getUnlockMess() {
+    getUnlockMess(): number {
         return this.unlockMess;
     }
 
     setPveLevelIndex(pveLevelIndex: number) {
         this.pveLevelIndex = pveLevelIndex;
-        laya.net.LocalStorage.setJSON("pveLevelIndex", this.pveLevelIndex);
+        laya.net.LocalStorage.setItem("pveLevelIndex", String(this.pveLevelIndex));
     }
 
-    getPveLevelIndex() {
+    getPveLevelIndex(): number {
         return this.pveLevelIndex;
     }
 
@@ -61,7 +56,7 @@ export class User {
             history[2]++;
         }
         
-        laya.net.LocalStorage.setJSON("pveHistory", this.pveHistory);
+        laya.net.LocalStorage.setItem("pveHistory", JSON.stringify(this.pveHistory));
     }
 
     getPveHistory(level: number): number[] {
@@ -70,10 +65,10 @@ export class User {
 
     setMessIndex(messIndex: number) {
         this.messIndex = messIndex;
-        laya.net.LocalStorage.setJSON("messIndex", this.messIndex);
+        laya.net.LocalStorage.setItem("messIndex", String(this.messIndex));
     }
 
-    getMessIndex() {
+    getMessIndex(): number {
         return this.messIndex;
     }
 }

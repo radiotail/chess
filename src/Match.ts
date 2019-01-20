@@ -12,9 +12,9 @@ export enum MatchType {
     MESS,
 }
 
-const Levels = [8, 10, 12, 14, 16, 18];
-const MessLevel = 14;
-const HintLevel = 14;
+const Levels = [5, 7, 9, 11, 13, 15];
+const MessLevel = 11;
+const HintLevel = 11;
 
 export class Match extends ui.MatchUI {
     private type: MatchType;
@@ -59,6 +59,10 @@ export class Match extends ui.MatchUI {
 
     onUndoBtnClick() {
         this.game.board.undo();
+    }
+
+    alert(message: string) {
+        console.log(message);
     }
 
     onHistoryBtnClick() {

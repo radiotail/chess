@@ -9,7 +9,8 @@ import GameConfig from "./GameConfigMine";
 
 // 程序入口
 export class Game{
-    public bg: Laya.Sprite;
+    // public bg: Laya.Sprite;
+    public bg: Laya.Image;
     public login: Login;
     public board: Board;
     public sound: Sound;
@@ -32,8 +33,10 @@ export class Game{
         this.login = new Login(this);
 
         //创建背景
-        this.bg = new Laya.Sprite();
-        this.bg.loadImage("res/bg.png");
+        // this.bg = new Laya.Sprite();
+        // this.bg.loadImage("res/bg.png");
+        this.bg = new laya.ui.Image("res/bg.png");
+        this.bg.centerX = 0;
 
         Laya.stage.addChild(this.bg);
         Laya.stage.addChild(this.login);

@@ -263,9 +263,9 @@ export class Search {
         this.result = 0;
         let msec = Laya.Browser.now();
         for (let i = 1; i <= depth; i ++) {
-            console.log("search depth: ", i);
             let value = this.searchRoot(i);
             let delta = Laya.Browser.now() - msec;
+            console.log("search depth: ", i, Laya.Browser.now(), msec, delta, msecLimit);
             if (delta > msecLimit) {
                 console.log("thinking break: ", this.situation.getMoveCount(), delta, msecLimit, Laya.timer.currTimer, this.result);
                 break;
