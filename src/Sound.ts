@@ -7,6 +7,7 @@ export enum SOUND{
     LOSS,
     WIN,
     DRAW,
+    BG,
     END,
 }
 
@@ -20,41 +21,40 @@ export class Sound {
         this.canPlayMusic = false;
         this.canPlayEffetc = false;
 
+        this.sounds[SOUND.CLICK] = "res/sounds/click.mp3";
+        this.sounds[SOUND.MOVE] = "res/sounds/move.mp3";
+        this.sounds[SOUND.ILLEGAL] = "res/sounds/illegal.mp3";
+        this.sounds[SOUND.LOSS] = "res/sounds/loss.mp3";
+        this.sounds[SOUND.WIN] = "res/sounds/win.mp3";
+        this.sounds[SOUND.DRAW] = "res/sounds/draw.mp3";
+        this.sounds[SOUND.CAPTURE] = "res/sounds/capture.mp3";
+        this.sounds[SOUND.CHECK] = "res/sounds/check.mp3";
+        this.sounds[SOUND.BG] = "res/sounds/bg.mp3";
+
         Laya.loader.load([
-            {url: "res/sounds/click.ogg", type: "sound"},
-            {url: "res/sounds/illegal.ogg", type: "sound"},
-            {url: "res/sounds/move.ogg", type: "sound"},
-            {url: "res/sounds/capture.ogg", type: "sound"},
-            {url: "res/sounds/check.ogg", type: "sound"},
-            {url: "res/sounds/loss.ogg", type: "sound"},
-            {url: "res/sounds/win.ogg", type: "sound"},
-            {url: "res/sounds/draw.ogg", type: "sound"},
-            {url: "res/sounds/bg.ogg", type: "sound"}],
+            {url: this.sounds[SOUND.CLICK], type: "sound"},
+            {url: this.sounds[SOUND.MOVE], type: "sound"},
+            {url: this.sounds[SOUND.ILLEGAL], type: "sound"},
+            {url: this.sounds[SOUND.LOSS], type: "sound"},
+            {url: this.sounds[SOUND.WIN], type: "sound"},j
+            {url: this.sounds[SOUND.DRAW], type: "sound"},
+            {url: this.sounds[SOUND.CAPTURE], type: "sound"},
+            {url: this.sounds[SOUND.CHECK], type: "sound"},
+            {url: this.sounds[SOUND.BG], type: "sound"}],
             Laya.Handler.create(this, this.onLoaded)
         );
-        // Laya.Sound.load("res/sounds/click.ogg");
     }
 
     onLoaded() {
-        console.log("sounds loaded!")
         this.canPlayMusic = true;
         this.canPlayEffetc = true;
-
-        this.sounds[SOUND.CLICK] = "res/sounds/click.ogg";
-        this.sounds[SOUND.MOVE] = "res/sounds/move.ogg";
-        this.sounds[SOUND.ILLEGAL] = "res/sounds/illegal.ogg";
-        this.sounds[SOUND.LOSS] = "res/sounds/loss.ogg";
-        this.sounds[SOUND.WIN] = "res/sounds/win.ogg";
-        this.sounds[SOUND.DRAW] = "res/sounds/draw.ogg";
-        this.sounds[SOUND.CAPTURE] = "res/sounds/capture.ogg";
-        this.sounds[SOUND.CHECK] = "res/sounds/check.ogg";
 
         this.playMusic();
     }
 
     playMusic() {
         if (this.canPlayMusic) {
-            Laya.SoundManager.playMusic("res/sounds/bg.ogg");
+            Laya.SoundManager.playMusic(this.sounds[SOUND.BG]);
         }
     }
 
