@@ -21,14 +21,18 @@ export class Match extends ui.MatchUI {
     private side: SIDE;
     private game: Game;
     private level: number;
+    private hintLevel: number;
 
-    constructor(game: Game, type: MatchType, messIndex?: number) {
+    constructor(game: Game, type: MatchType) {
         super();
 
         this.game = game;
         this.type = type;
         this.side = SIDE.NONE;
-        
+
+        this.menu.centerX = 0;
+        // this.control.centerX = 0;
+
         this.undoBtn.on(laya.events.Event.CLICK, this, this.onUndoBtnClick);
         Game.addButtonEvent(this.undoBtn);
 
@@ -41,12 +45,35 @@ export class Match extends ui.MatchUI {
         this.historyBtn.on(laya.events.Event.CLICK, this, this.onHistoryBtnClick);
         Game.addButtonEvent(this.historyBtn);
 
-        this.selectInfo.labels = "      江湖小虾,      后起之秀,      江湖少侠,      武林高手,      英雄豪杰,      一代宗师";
+        this.menuBtn.on(laya.events.Event.CLICK, this, this.onMenuBtnClick);
+        Game.addButtonEvent(this.menuBtn);
+
+        this.quitBtn.on(laya.events.Event.CLICK, this, this.onQuitBtnClick);
+        Game.addButtonEvent(this.quitBtn);
+
+        this.selectInfo.labels = "       江湖小虾,       后起之秀,       江湖少侠,       武林高手,       英雄豪杰,       一代宗师";
         this.selectInfo.selectedIndex = 0;
         this.selectInfo.selectHandler = new Laya.Handler(this, this.onSelectLevel, [this.selectInfo]);
         this.selectInfo.on(laya.events.Event.MOUSE_OVER, this, this.onComboxMouseOver, [this.selectInfo]);
         this.selectInfo.on(laya.events.Event.MOUSE_OUT, this, this.onComboxMouseOut, [this.selectInfo]);
-        this.game.board.setHintLevel(HintLevel);
+
+        this.hintLevel = HintLevel;
+
+        this.visible = false;
+        this.control.visible = false;
+        Laya.stage.addChild(this);
+    }
+
+    setHintLevel(level: number) {
+        this.hintLevel = level;
+    }
+
+    getHintLevel() {
+        return this.hintLevel;
+    }
+
+    setType(type: MatchType) {
+        this.type = type;
     }
 
     onComboxMouseOver(comboBox: Laya.ComboBox) {
@@ -58,19 +85,43 @@ export class Match extends ui.MatchUI {
     }
 
     onUndoBtnClick() {
+        this.game.match.control.visible = false;
         this.game.board.undo();
     }
 
-    alert(message: string) {
-        console.log(message);
+    showModal(title: string, content: string) {
+		if (window['wx'] != undefined) {
+            window['wx'].showModal({
+                title: title,
+                content: content,
+                showCancel: false,
+            })
+        } else {
+            alert(content);
+        }
     }
 
     onHistoryBtnClick() {
         let history = this.game.user.getPveHistory(this.level);
-        alert("总场: " + history[0] + " 胜: " + history[1] + " 平: " + history[2]);
+        this.showModal("战绩", "总场: " + history[0] + " 胜: " + history[1] + " 平: " + history[2]);
+    }
+
+    onMenuBtnClick() {
+        if (this.game.match.control.visible) {
+            this.game.match.control.visible = false;
+        } else {
+            this.game.match.control.visible = true;
+        }
+    }
+
+    onQuitBtnClick() {
+        this.game.match.control.visible = false;
+        this.game.login.visible = true;
+        this.game.match.visible = false;
     }
 
     onGiveupBtnClick() {
+        this.game.match.control.visible = false;
         this.game.user.setPveHistory(this.level, RESULT.LOSS);
         this.start();
     }
@@ -84,6 +135,9 @@ export class Match extends ui.MatchUI {
     }
 
     start() {
+        this.visible = true;
+        this.game.match.control.visible = false;
+
         if (this.type == MatchType.PVE) {
             this.level = Levels[this.game.user.getPveLevelIndex()];
             this.game.board.selectLevel(this.level, this.game.search);
@@ -103,6 +157,7 @@ export class Match extends ui.MatchUI {
     }
 
     onHintBtnClick() {
+        this.game.match.control.visible = false;
         this.game.board.responseMove(true);
     }
 }

@@ -36,7 +36,7 @@ export class Sound {
             {url: this.sounds[SOUND.MOVE], type: "sound"},
             {url: this.sounds[SOUND.ILLEGAL], type: "sound"},
             {url: this.sounds[SOUND.LOSS], type: "sound"},
-            {url: this.sounds[SOUND.WIN], type: "sound"},j
+            {url: this.sounds[SOUND.WIN], type: "sound"},
             {url: this.sounds[SOUND.DRAW], type: "sound"},
             {url: this.sounds[SOUND.CAPTURE], type: "sound"},
             {url: this.sounds[SOUND.CHECK], type: "sound"},

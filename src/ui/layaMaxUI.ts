@@ -3,14 +3,6 @@ import View=Laya.View;
 import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 export module ui {
-    export class BoardUI extends View {
-		public board:Laya.Image;
-        constructor(){ super()}
-        createChildren():void {
-            super.createChildren();
-            this.loadScene("Board");
-        }
-    }
     export class LoginUI extends View {
 		public pveBtn:Laya.Button;
 		public pvpBtn:Laya.Button;
@@ -23,12 +15,18 @@ export module ui {
         }
     }
     export class MatchUI extends View {
-		public undoBtn:Laya.Button;
-		public defeatBtn:Laya.Button;
-		public hintBtn:Laya.Button;
-		public menu:Laya.Image;
+		public menu:Laya.Panel;
+		public menuBtn:Laya.Button;
 		public selectInfo:Laya.ComboBox;
 		public historyBtn:Laya.Button;
+		public control:Laya.Sprite;
+		public hintBtn:Laya.Button;
+		public defeatBtn:Laya.Button;
+		public undoBtn:Laya.Button;
+		public quitBtn:Laya.Button;
+		public board:Laya.Image;
+		public checkImg:Laya.Image;
+		public resultImg:Laya.Image;
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

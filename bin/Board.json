@@ -1,1 +1,1 @@
-{"type":"View","props":{"width":720,"height":830},"compId":1,"child":[{"type":"Image","props":{"y":-2,"x":0,"var":"board","skin":"res/board.png"},"compId":2}],"loadList":["res/board.png"],"loadList3D":[]}
+{"type":"View","props":{"width":512,"height":909},"compId":1,"child":[{"type":"Image","props":{"y":237,"x":0,"width":512,"var":"board","skin":"res/board.png","height":589},"compId":2}],"loadList":["res/board.png"],"loadList3D":[]}

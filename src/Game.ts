@@ -28,18 +28,29 @@ export class Game{
         this.search = search;
         this.debug = GameConfig.debug;
         
-        this.sound = new Sound();       
-
-        this.login = new Login(this);
-
         //创建背景
-        // this.bg = new Laya.Sprite();
-        // this.bg.loadImage("res/bg.png");
         this.bg = new laya.ui.Image("res/bg.png");
         this.bg.centerX = 0;
-
         Laya.stage.addChild(this.bg);
-        Laya.stage.addChild(this.login);
+        
+        // 加载音乐
+        this.sound = new Sound();       
+
+        // 创建登录UI
+        this.login = new Login(this);
+
+		// if (window['wx'] != undefined) {
+        //     const bannerAd = window['wx'].createBannerAd({
+        //         adUnitId: 'xxxx',
+        //         style: {
+        //             left: 10,
+        //             top: 76,
+        //             width: 320
+        //         }
+        //     })
+            
+        //     bannerAd.show()
+        // }
     }
 
     static addButtonEvent(btn: Laya.Button) {

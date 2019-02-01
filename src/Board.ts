@@ -15,8 +15,8 @@ export enum RESULT{
     LOSS,
 }
 
-const SQUARE_SIZE = 80;
-const TOP_GAP = 8;
+let SQUARE_SIZE = 0;
+let TOP_GAP = 0;
 
 const PIECE_NAME = [
 	"oo", null, null, null, null, null, null, null,
@@ -32,12 +32,24 @@ function SQ_Y(sq) {
 	return (COLUMN_Y(sq) - 3) * SQUARE_SIZE + TOP_GAP;
 }
 
-function alert(message: string) {
-    console.log(message);
+function showModal(title: string, content: string, board: Board) {
+    if (window['wx'] != undefined) {
+        window['wx'].showModal({
+            title: title,
+            content: content,
+            showCancel: false,
+            success(res) {
+                board.restartGame();
+            }
+        })
+    } else {
+        alert(content);
+        Laya.timer.once(500, board, board.restartGame);
+    }
 }
 
-function alertDelay(message) {
-    Laya.timer.once(250, this, alert, [message]); 
+function alertDelay(title: string, content: string, board: Board) {
+    Laya.timer.once(500, this, showModal, [title, content, board]); 
 }
 
 export enum SIDE {
@@ -65,7 +77,8 @@ class Cell extends laya.ui.Image {
         this.drawSquare();
 
         this.addChild(this.img);
-        board.addChild(this);
+        // board.addChild(this);
+        board.addCell(this);
     }
 
     setClickEvent(caller: any, listener: Function, args?: Array<any>) {
@@ -105,7 +118,8 @@ class Cell extends laya.ui.Image {
     }
 }
 
-export class Board  extends ui.BoardUI {
+// export class Board  extends ui.BoardUI {
+export class Board {
     private situation: Situation;
     private search: Search;
     private cells: Array<Cell>;
@@ -114,17 +128,16 @@ export class Board  extends ui.BoardUI {
     private lastMove: number;
     private computer: number;
     private selected: number;
-    private resultImg: laya.ui.Image;
     private msecLimit: number;
-    private hintLevel: number;
     private level: number;
-	private	game: Game;
+    private	game: Game;
+    private boardImg: laya.ui.Image;
 
     constructor(game: Game) {
-        super();
-        
-        this.centerX = 0;
-        this.centerY = 0;
+        this.game = game;
+        this.boardImg = game.match.board;
+        this.boardImg.centerX = 0;
+        this.boardImg.centerY = 0;
         this.msecLimit = 10000;
         this.search = null;
         this.computer = SIDE.NONE;
@@ -132,18 +145,25 @@ export class Board  extends ui.BoardUI {
         this.busy = false;
         this.lastMove = 0;
         this.result = RESULT.UNKNOWN;
-        this.game = game;
         this.situation = game.situation;
         this.cells = new Array<Cell>(SQUARE_COUNT);
 
-        this.resultImg = new laya.ui.Image("res/win.png");
-        this.resultImg.centerX = 0;
-        this.resultImg.centerY = 0;
-        this.resultImg.visible = false;
-        this.resultImg.zOrder = 10;
-        this.addChild(this.resultImg);
+        this.game.match.resultImg.zOrder = 10;
+        this.game.match.resultImg.visible = false;
+        this.game.match.checkImg.zOrder = 10;
+        this.game.match.checkImg.visible = false;
+
+        SQUARE_SIZE = this.boardImg.width / 9;
+        TOP_GAP = 3;//this.boardImg.y;
+
+        this.boardImg.visible = false;
+        // Laya.stage.addChild(this);
 
         this.initCells();
+    }
+
+    addCell(cell: laya.ui.Image) {
+        this.boardImg.addChild(cell);
     }
 
     selectLevel(level: number, search: Search) {
@@ -156,21 +176,17 @@ export class Board  extends ui.BoardUI {
         return Math.pow(2, level);
     }
 
-    setHintLevel(hintLevel: number) {
-        this.hintLevel = hintLevel;
-    }
-
     setSearch(search: Search) {
         this.search = search;
         this.situation.search = this.search;
     }
 
     newGame(computer : SIDE, fen ?: string) {
+        this.boardImg.visible = true;
         this.computer = computer;
         this.result = RESULT.UNKNOWN;
         this.situation.init(fen);
         this.flushBoard();
-        //this.response();
     }
 
     flushBoard() {
@@ -217,30 +233,33 @@ export class Board  extends ui.BoardUI {
     }
 
     restartGame() {
-        this.resultImg.visible = false;
+        this.game.match.resultImg.visible = false;
         this.game.login.startGame();
     }
 
     showResult(result: RESULT, msg: string) {
+        let title: string;
         if (result == RESULT.WIN) {
-            this.resultImg.skin =  "res/win.png";
+            title = "胜利";
+            this.game.match.resultImg.skin =  "res/win.png";
             this.game.sound.playEffect(SOUND.WIN);
         } else if (result == RESULT.LOSS) {
-            this.resultImg.skin =  "res/lose.png";
+            title = "失败";
+            this.game.match.resultImg.skin =  "res/lose.png";
             this.game.sound.playEffect(SOUND.LOSS);
         } else if (result == RESULT.DRAW) {
-            this.resultImg.skin =  "res/draw.png";
+            title = "和棋";
+            this.game.match.resultImg.skin =  "res/draw.png";
             this.game.sound.playEffect(SOUND.DRAW);
         }    
 
         this.busy = false;
         this.result = result;
-        this.resultImg.visible = true;
+        this.game.match.resultImg.visible = true;
         
         this.game.user.setPveHistory(this.level, result)
 
-        Laya.timer.once(1000, this, this.restartGame);
-        alertDelay(msg);
+        alertDelay(title, msg, this);
     }
 
     onCellClick(cell: Cell) {
@@ -372,6 +391,10 @@ export class Board  extends ui.BoardUI {
         return false;
     }
 
+    hideCheckImg() {
+        this.game.match.checkImg.visible = false;
+    }
+
     postAddMove(move: number, computer: boolean) {
         this.clearMoveHint();
         this.setMoveHint(move);
@@ -397,7 +420,9 @@ export class Board  extends ui.BoardUI {
         }
 
         if (this.situation.inCheck()) {
+            this.game.match.checkImg.visible = true;
             this.game.sound.playEffect(SOUND.CHECK);
+            Laya.timer.once(600, this, this.hideCheckImg); 
         } else if (this.situation.captured()) {
             this.game.sound.playEffect(SOUND.CAPTURE);
         } else {
@@ -410,7 +435,7 @@ export class Board  extends ui.BoardUI {
     responseMove(hint = false) {
         let msecLimit : number;
         if (hint) {
-            msecLimit = this.genLevelMsec(this.hintLevel);
+            msecLimit = this.genLevelMsec(this.game.match.getHintLevel());
         } else {
             msecLimit = this.msecLimit;
         }

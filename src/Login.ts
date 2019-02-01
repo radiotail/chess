@@ -9,13 +9,13 @@ import {User} from "./User"
 import { initZobrist } from './Zobrist'
 
 export class Login extends ui.LoginUI {
-    private match: Match;
     private game: Game;
 
     constructor(game: Game) {
         super();
 
         this.game = game;
+        this.centerX = 0;
         this.logo.centerX = 0;
 
         this.pveBtn.centerX = 0;
@@ -31,41 +31,33 @@ export class Login extends ui.LoginUI {
         Game.addButtonEvent(this.messBtn);
 
         initZobrist();
+        game.match = new Match(this.game, MatchType.PVE);
         game.board = new Board(game);
+
+        Laya.stage.addChild(this);
     }
 
     startGame() {
-        this.match.start();
+        this.visible = false;
+        this.game.match.start();
     }
 
     onPveBtnClick() {
-        this.visible = false;
+        this.game.match.setType(MatchType.PVE);
 
-        this.match = new Match(this.game, MatchType.PVE);
-        Laya.stage.addChild(this.match);
-        Laya.stage.addChild(this.game.board);
-
-        this.match.start();
+        this.startGame();
     }
 
     onPvpBtnClick() {
-        this.visible = false;
+        this.game.match.setType(MatchType.PVP);
 
-        this.match = new Match(this.game, MatchType.PVP);
-        Laya.stage.addChild(this.match);
-        Laya.stage.addChild(this.game.board);
-
-        this.match.start();
+        this.startGame();
     }
 
     onMessBtnClick() {
-        this.visible = false;
+        this.game.match.setType(MatchType.MESS);
 
-        this.match = new Match(this.game, MatchType.MESS, 0);
-        Laya.stage.addChild(this.match);
-        Laya.stage.addChild(this.game.board);
-
-        this.match.start();
+        this.startGame();
     }
 }
 

@@ -1,11 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
+    "selectedBox":31,
+    "selecteID":30,
     "searchKey":"View",
-    "props":{"width":720,"sceneColor":"#000000","height":1280},
+    "props":{"width":512,"top":0,"sceneColor":"#f6e4e4","right":0,"left":0,"height":909,"bottom":0},
     "nodeParent":-1,
-    "maxID":30,
+    "maxID":48,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -15,90 +16,185 @@
     "child":[
         {
             "x":15,
-            "type":"Button",
-            "searchKey":"Button,undoBtn",
-            "props":{"y":73,"x":193,"var":"undoBtn","stateNum":"1","skin":"res/undo.png","labelSize":35,"labelColors":"#E0E0E0","anchorY":0.5,"anchorX":0.5},
+            "type":"Panel",
+            "searchKey":"Panel,menu,menu",
+            "props":{"y":75,"x":256,"width":512,"var":"menu","name":"menu","height":150,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":1,
-            "label":"undoBtn",
-            "isDirectory":false,
+            "label":"menu",
+            "isOpen":true,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
+            "hasChild":true,
+            "compId":31,
             "child":[
-                ],
-            "$LOCKED":false,
-            "$HIDDEN":false
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,defeatBtn",
-            "props":{"y":73,"x":528,"var":"defeatBtn","stateNum":"1","skin":"res/defeat.png","labelSize":35,"labelColors":"#E0E0E0","anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"defeatBtn",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":6,
-            "child":[
-                ],
-            "$HIDDEN":false
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,hintBtn",
-            "props":{"y":73,"x":360,"var":"hintBtn","stateNum":"1","skin":"res/hint.png","anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"hintBtn",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":8,
-            "child":[
-                ]
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,menuBtn,menuBtn",
+                    "props":{"y":53,"x":36,"width":137,"var":"menuBtn","stateNum":"1","skin":"res/menu.png","pivotY":80,"pivotX":70,"name":"menuBtn","height":142},
+                    "nodeParent":31,
+                    "label":"menuBtn",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":23,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"ComboBox",
+                    "searchKey":"ComboBox,selectInfo",
+                    "props":{"y":106,"x":256,"width":250,"var":"selectInfo","stateNum":1,"skin":"res/level.png","labelSize":30,"labelColors":"\"FFFFFF,FFFFFF,FFFFFF,FFFFFF,FFFFFF\"","labelBold":true,"itemSize":30,"itemColors":"C9AC71","height":60,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":31,
+                    "label":"selectInfo",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":24,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,historyBtn",
+                    "props":{"y":53,"x":469,"width":56,"var":"historyBtn","stateNum":"1","skin":"res/history.png","height":83,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":31,
+                    "label":"historyBtn",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":26,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Text",
+                    "searchKey":"Text",
+                    "props":{"y":22,"x":194,"width":123,"text":"象棋江湖","height":37,"fontSize":30,"font":"Microsoft YaHei","color":"#2a2424","bold":true},
+                    "nodeParent":31,
+                    "label":"Text",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":30,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite,control,control",
+                    "props":{"y":150,"x":359,"width":356,"var":"control","texture":"res/bg_order_pop.png","rotation":180,"name":"control","height":79},
+                    "nodeParent":31,
+                    "label":"control",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":36,
+                    "child":[
+                        {
+                            "type":"Button",
+                            "searchKey":"Button,hintBtn",
+                            "props":{"y":33,"x":220,"width":57,"var":"hintBtn","stateNum":"1","skin":"res/hint.png","rotation":180,"height":49,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":36,
+                            "label":"hintBtn",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":8,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Button",
+                            "searchKey":"Button,defeatBtn",
+                            "props":{"y":35,"x":135,"width":54,"var":"defeatBtn","stateNum":"1","skin":"res/defeat.png","rotation":180,"labelSize":35,"labelColors":"#E0E0E0","height":47,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":36,
+                            "label":"defeatBtn",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":6,
+                            "child":[
+                                ],
+                            "$HIDDEN":false
+                        },
+                        {
+                            "type":"Button",
+                            "searchKey":"Button,undoBtn",
+                            "props":{"y":9,"x":81,"width":54,"var":"undoBtn","stateNum":"1","skin":"res/undo.png","rotation":180,"pivotY":48,"labelSize":35,"labelColors":"#E0E0E0","height":48},
+                            "nodeParent":36,
+                            "label":"undoBtn",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":5,
+                            "child":[
+                                ],
+                            "$LOCKED":false,
+                            "$HIDDEN":false
+                        },
+                        {
+                            "type":"Button",
+                            "searchKey":"Button,quitBtn",
+                            "props":{"y":36,"x":297,"width":59,"var":"quitBtn","stateNum":"1","skin":"res/quit.png","rotation":180,"height":51,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":36,
+                            "label":"quitBtn",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":40,
+                            "child":[
+                                ]
+                        }]
+                }]
         },
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,menu,menu",
-            "props":{"y":46,"x":677,"var":"menu","skin":"res/menu.png","name":"menu","anchorY":0.5,"anchorX":0.5},
+            "searchKey":"Image,board",
+            "props":{"y":160,"x":0,"width":512,"var":"board","skin":"res/board.png","height":589},
             "nodeParent":1,
-            "label":"menu",
-            "isDirectory":false,
+            "label":"board",
+            "isOpen":true,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
-            "compId":23,
+            "hasChild":true,
+            "compId":41,
             "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"ComboBox",
-            "searchKey":"ComboBox,selectInfo",
-            "props":{"y":174,"x":360,"width":315,"var":"selectInfo","stateNum":1,"skin":"res/level.png","labelSize":40,"labelColors":"\"FFFFFF,FFFFFF,FFFFFF,FFFFFF,FFFFFF\"","labelBold":true,"itemSize":40,"itemColors":"C9AC71","height":95,"centerX":0,"anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"selectInfo",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":24,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,historyBtn",
-            "props":{"y":78,"x":59,"var":"historyBtn","stateNum":"1","skin":"res/history.png","anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"historyBtn",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":26,
-            "child":[
-                ]
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,checkImg,checkImg",
+                    "props":{"width":180,"var":"checkImg","skin":"res/check.png","name":"checkImg","label":"label","height":160,"centerY":0,"centerX":0},
+                    "nodeParent":41,
+                    "label":"checkImg",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":45,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,resultImg,resultImg",
+                    "props":{"y":204,"x":66,"width":380,"var":"resultImg","skin":"res/win.png","name":"resultImg","height":180,"centerY":0,"centerX":0},
+                    "nodeParent":41,
+                    "label":"resultImg",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":47,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {
